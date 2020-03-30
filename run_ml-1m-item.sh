@@ -6,8 +6,8 @@ masked_lm_prob=0.2
 max_predictions_per_seq=60
 
 dim=64
-batch_size=512
-num_train_steps=300000
+batch_size=256
+num_train_steps=400000
 
 prop_sliding_window=0.5
 mask_prob=1.0
@@ -45,5 +45,5 @@ CUDA_VISIBLE_DEVICES=0 python -u run.py \
     --max_predictions_per_seq=${max_predictions_per_seq} \
     --num_train_steps=${num_train_steps} \
     --num_warmup_steps=100 \
-    --learning_rate=1e-3
+    --learning_rate=1e-4
 
