@@ -5,9 +5,9 @@ max_seq_length=300
 masked_lm_prob=0.2
 max_predictions_per_seq=60
 
-dim=128
-batch_size=512
-num_train_steps=300000
+dim=64
+batch_size=256
+num_train_steps=400000
 
 prop_sliding_window=0.5
 mask_prob=1.0
