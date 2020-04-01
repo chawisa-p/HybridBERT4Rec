@@ -406,7 +406,7 @@ def create_masked_lm_predictions_force_last(tokens):
             continue
         last_index = i
 
-    assert last_index > 0
+    # assert last_index > 0
 
     output_tokens = list(tokens)
     output_tokens[last_index] = "[MASK]"
