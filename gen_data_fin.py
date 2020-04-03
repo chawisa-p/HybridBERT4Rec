@@ -563,7 +563,8 @@ def main():
         user_test_data = {
             'user_' + str(u):
                 ['item_' + str(item) for item in (user_train[u] + user_test[u])]
-            for u in user_train if len(user_train[u]) > 0 and len(user_test[u]) > 0
+            # for u in user_train if len(user_train[u]) > 0 and len(user_test[u]) > 0  -- สำหรับ item ที่มีมากกว่า 3 feedbacks len(user_test[u]) จะไม่เป็น 0
+            for u in user_train if len(user_train[u]) > 0
         }
         rng = random.Random(random_seed)
 
@@ -664,7 +665,8 @@ def main():
         item_test_data = {
             'item_' + str(i):
                 ['user_' + str(user) for user in (item_train[i] + item_test[i])]
-            for i in item_train if len(item_train[i]) > 0 and len(item_test[i]) > 0
+            # for i in item_train if len(item_train[i]) > 0 and len(item_test[i]) > 0
+            for i in item_train if len(item_train[i]) > 0
         }
         rng = random.Random(random_seed)
 
