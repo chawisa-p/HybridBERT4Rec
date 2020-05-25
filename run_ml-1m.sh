@@ -1,4 +1,4 @@
-CKPT_DIR="path/BERT4Rec"
+CKPT_DIR="path/HybridBERT"
 dataset_name="ml-1m"
 mode_name="item-sequence"
 max_seq_length=200
@@ -17,26 +17,27 @@ pool_size=10
 signature="-mp${mask_prob}-sw${prop_sliding_window}-mlp${masked_lm_prob}-df${dupe_factor}-mpps${max_predictions_per_seq}-msl${max_seq_length}"
 
 
-python -u gen_data_fin.py \
-    --mode_name=${mode_name} \
-    --dataset_name=${dataset_name} \
-    --max_seq_length=${max_seq_length} \
-    --max_predictions_per_seq=${max_predictions_per_seq} \
-    --mask_prob=${mask_prob} \
-    --dupe_factor=${dupe_factor} \
-    --masked_lm_prob=${masked_lm_prob} \
-    --prop_sliding_window=${prop_sliding_window} \
-    --signature=${signature} \
-    --pool_size=${pool_size} \
+#python -u gen_data_fin.py \
+#    --mode_name=${mode_name} \
+#    --dataset_name=${dataset_name} \
+#    --max_seq_length=${max_seq_length} \
+#    --max_predictions_per_seq=${max_predictions_per_seq} \
+#    --mask_prob=${mask_prob} \
+#    --dupe_factor=${dupe_factor} \
+#    --masked_lm_prob=${masked_lm_prob} \
+#    --prop_sliding_window=${prop_sliding_window} \
+#    --signature=${signature} \
+#    --pool_size=${pool_size} \
 
 CUDA_VISIBLE_DEVICES=0 python -u run.py \
+    --mode_name=${mode_name} \
     --train_input_file=./data/${dataset_name}${signature}.train.tfrecord \
     --test_input_file=./data/${dataset_name}${signature}.test.tfrecord \
     --vocab_filename=./data/${dataset_name}${signature}.vocab \
     --user_history_filename=./data/${dataset_name}${signature}.his \
     --checkpointDir=${CKPT_DIR}/${dataset_name} \
     --signature=${signature}-${dim} \
-    --do_train=True\
+    --do_train=False\
     --do_eval=True \
     --bert_config_file=./bert_train/bert_config_${dataset_name}_${dim}.json \
     --batch_size=${batch_size} \
