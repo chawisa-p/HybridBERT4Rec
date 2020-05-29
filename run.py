@@ -160,22 +160,22 @@ class EvalHooks(tf.train.SessionRunHook):
 
     def end(self, session):
         # print("true_item :", self.true_item)
-        movie_file = os.path.join("./data", "movies.txt")
-        movies = {}
-        with open(movie_file, 'r') as movie:
-            for line in movie:
-                line = line.strip()
-                ele = line.split('_')
-                movies[int(ele[0])] = [ele[1], ele[2]]
-            movie.close()
+        # movie_file = os.path.join("./data", "movies.txt")
+        # movies = {}
+        # with open(movie_file, 'r') as movie:
+        #     for line in movie:
+        #         line = line.strip()
+        #         ele = line.split('_')
+        #         movies[int(ele[0])] = [ele[1], ele[2]]
+        #     movie.close()
 
         print("mode_name", FLAGS.mode_name)
         if FLAGS.mode_name == "item-sequence":
-            for u in self.true_item.keys():
-                for i in self.true_item[u]:
-                    j = i.strip('item_')
-                    self.true_item[u].append(movies[int(j)])
-                    break
+            # for u in self.true_item.keys():
+            #     for i in self.true_item[u]:
+            #         j = i.strip('item_')
+            #         self.true_item[u].append(movies[int(j)])
+            #         break
             output_true_file = os.path.join(FLAGS.checkpointDir,
                                             "true_results.txt")
             with open(output_true_file, 'w') as f:
@@ -183,11 +183,11 @@ class EvalHooks(tf.train.SessionRunHook):
                     f.write("%s = %s\n" % (key, str(self.true_item[key])))
                 f.close()
 
-            for u in self.predictions.keys():
-                for i in self.predictions[u]:
-                    j = i.strip('item_')
-                    self.predictions[u].append(movies[int(j)])
-                    break
+            # for u in self.predictions.keys():
+            #     for i in self.predictions[u]:
+            #         j = i.strip('item_')
+            #         self.predictions[u].append(movies[int(j)])
+            #         break
 
             output_predict_file = os.path.join(FLAGS.checkpointDir,
                                                "predictions_results.txt")
@@ -202,6 +202,7 @@ class EvalHooks(tf.train.SessionRunHook):
             #         j = i.strip('item_')
             #         self.true_item[u].append(movies[int(j)])
             #         break
+
             output_true_file = os.path.join(FLAGS.checkpointDir,
                                             "true_results.txt")
             with open(output_true_file, 'w') as f:
