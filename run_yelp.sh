@@ -1,4 +1,4 @@
-CKPT_DIR="path/BERT4Rec"
+CKPT_DIR="path/HybridBERT"
 dataset_name="yelp"
 mode_name="item-sequence"
 max_seq_length=100
